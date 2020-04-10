@@ -8,15 +8,17 @@ wb = openpyxl.load_workbook(filename='word_rus.xlsx')
 r = requests.post('http://paraphraser.ru/token/',
                   data={'login': 'annased', 'password': '12345678'})
 token = r.json().get('token', '')
+
+
 def vectorofwrods(line):
     payload = {'c': 'vector',
-                'query': line,
-                'forms': '0',
-                'top': '5',
-                'lang': 'ru',
-                'format': 'json',
-                'scores': '0',
-                'token': token}
+               'query': line,
+               'forms': '0',
+               'top': '5',
+               'lang': 'ru',
+               'format': 'json',
+               'scores': '0',
+               'token': token}
     r = requests.post('http://paraphraser.ru/api/',
                       data=payload)
     result = r.json()
@@ -33,8 +35,8 @@ def vectorofwrods(line):
 def synonyms(line):
     payload = {'c': 'syns',
                'query': line,
-               'forms':'0',
-               'scores':'0',
+               'forms': '0',
+               'scores': '0',
                'top': '5',
                'lang': 'ru',
                'format': 'json',
@@ -56,8 +58,8 @@ def synonyms(line):
 def hyps(line):
     payload = {'c': 'hyp',
                'query': line,
-               'forms':'0',
-               'scores':'0',
+               'forms': '0',
+               'scores': '0',
                'top': '5',
                'lang': 'ru',
                'format': 'json',
@@ -85,7 +87,7 @@ def generate_5_words(line):
     c, d = hyps(line)
     result = set()
     if len(b) > 0:
-        result.add(b[random.randint(0,len(b)-1)])
+        result.add(b[random.randint(0, len(b)-1)])
     if len(c) > 0:
         result.add(c[random.randint(0, len(c)-1)])
     if len(d) > 0:

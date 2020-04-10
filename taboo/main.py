@@ -26,34 +26,33 @@ clock = pygame.time.Clock()
 
 difficulty = 0
 # buttons
-rules = pygame.image.load('images/Buttons/rules.png').convert_alpha()
-start = pygame.image.load('images/Buttons/startofgame.png').convert_alpha()
-back = pygame.image.load('images/Buttons/back.png').convert_alpha()
-num1 = pygame.image.load('images/Buttons/1.png').convert_alpha()
-num2 = pygame.image.load('images/Buttons/2.png').convert_alpha()
-num1pressed = pygame.image.load('images/Buttons/1pressed.png').convert_alpha()
-num2pressed = pygame.image.load('images/Buttons/2pressed.png').convert_alpha()
-next = pygame.image.load('images/Buttons/next.png').convert_alpha()
-skip = pygame.image.load('images/Buttons/skip.png').convert_alpha()
+rules = pygame.image.load('images/Buttons/rules.PNG').convert_alpha()
+start = pygame.image.load('images/Buttons/startofgame.PNG').convert_alpha()
+back = pygame.image.load('images/Buttons/back.PNG').convert_alpha()
+num1 = pygame.image.load('images/Buttons/1.PNG').convert_alpha()
+num2 = pygame.image.load('images/Buttons/2.PNG').convert_alpha()
+num1pressed = pygame.image.load('images/Buttons/1pressed.PNG').convert_alpha()
+num2pressed = pygame.image.load('images/Buttons/2pressed.PNG').convert_alpha()
+next = pygame.image.load('images/Buttons/next.PNG').convert_alpha()
+skip = pygame.image.load('images/Buttons/skip.PNG').convert_alpha()
 
 # background
-background = pygame.image.load('''images/Backgrounds/background2.jpg
-                                    ''').convert_alpha()
+background = pygame.image.load('images/Backgrounds/background2.jpg').convert_alpha()
 
 # stars
-stars = pygame.image.load('images/StarsImage/stars.png').convert_alpha()
-stars1 = pygame.image.load('images/StarsImage/stars1.png').convert_alpha()
-stars2 = pygame.image.load('images/StarsImage/stars2.png').convert_alpha()
-stars3 = pygame.image.load('images/StarsImage/stars3.png').convert_alpha()
+stars = pygame.image.load('images/StarsImage/stars.PNG').convert_alpha()
+stars1 = pygame.image.load('images/StarsImage/stars1.PNG').convert_alpha()
+stars2 = pygame.image.load('images/StarsImage/stars2.PNG').convert_alpha()
+stars3 = pygame.image.load('images/StarsImage/stars3.PNG').convert_alpha()
 
 # others
-rules_text = pygame.image.load('images/others/rules_txt.png').convert_alpha()
-logo = pygame.image.load('images/others/russian_logo.png').convert_alpha()
+rules_text = pygame.image.load('images/others/rules_txt.PNG').convert_alpha()
+logo = pygame.image.load('images/others/russian_logo.PNG').convert_alpha()
 
 # texts
 font = pygame.font.SysFont('Consolas', 30)
-text1 = pygame.image.load('text1.png').convert_alpha()
-text2 = pygame.image.load('text2.png').convert_alpha()
+text1 = pygame.image.load('text1.PNG').convert_alpha()
+text2 = pygame.image.load('text2.PNG').convert_alpha()
 
 running = True
 words = list()
@@ -63,9 +62,7 @@ words2 = Generate_Words(2)
 
 def one_round(difficulty):
     score = 0
-    nextb = Button(WIDTH - next.get_width(),
-                   HEIGHT - next.get_height(),
-                   screen, next)
+    nextb = Button(WIDTH - next.get_width(), HEIGHT - next.get_height(), screen, next)
     skipb = Button(WIDTH - next.get_width() - skip.get_width() - 20,
                    HEIGHT - next.get_height(),
                    screen, skip)
@@ -85,10 +82,8 @@ def one_round(difficulty):
         nextb.drawbutton()
         skipb.drawbutton()
         for i in range(6):
-            screen.blit(font.render(str(words[i]), True, WHITE),
-                        (500, i * 50 + 20))
-        screen.blit(font.render("Score:" + str(score), True, WHITE),
-                    (30, HEIGHT / 2))
+            screen.blit(font.render(str(words[i]), True, WHITE), (500, i * 50 + 20))
+        screen.blit(font.render("Score:" + str(score), True, WHITE), (30, HEIGHT / 2))
         screen.blit(font.render(text, True, (0, 0, 0)), (30, 50))
         if nextb.ispressed():
             score += 10
@@ -107,9 +102,7 @@ def Game(difficulty, numberofteams):
     else:
         score = [0, 0]
     currentteam = 0
-    startb = Button(WIDTH - start.get_width(),
-                    HEIGHT - start.get_height(),
-                    screen, start)
+    startb = Button(WIDTH - start.get_width(), HEIGHT - start.get_height(), screen, start)
     if difficulty == 1:
         words = words1
     else:
@@ -124,8 +117,7 @@ def Game(difficulty, numberofteams):
         screen.blit(background, (0, 0))
         startb.drawbutton()
         for i in range(len(score)):
-            screen.blit(font.render("Score:" + str(score[i]), True, WHITE),
-                        (0, HEIGHT / 2 + 50 * i))
+            screen.blit(font.render("Score:" + str(score[i]), True, WHITE), (0, HEIGHT / 2 + 50 * i))
         pygame.display.flip()
         if startb.ispressed():
             score[currentteam] += one_round(difficulty)
@@ -142,14 +134,10 @@ def nextwords():
 
 def choose_mode():
     global running
-    num1b = Button(WIDTH / 2 - num1.get_width() - 30, 100,
-                   screen, num1, num1pressed)
+    num1b = Button(WIDTH / 2 - num1.get_width() - 30, 100, screen, num1, num1pressed)
     num2b = Button(WIDTH / 2 + 30, 100, screen, num2, num2pressed)
-    star = Slider(WIDTH / 2 - stars.get_width() / 2, 300,
-                  screen, stars, stars1, stars2, stars3)
-    startb = Button(WIDTH - start.get_width(),
-                    HEIGHT - start.get_height(),
-                    screen, start)
+    star = Slider(WIDTH / 2 - stars.get_width() / 2, 300, screen, stars, stars1, stars2, stars3)
+    startb = Button(WIDTH - start.get_width(), HEIGHT - start.get_height(), screen, start)
     numberofteams = 0
     difficulty = 0
     while running:
@@ -166,13 +154,11 @@ def choose_mode():
         num2b.drawbutton()
         startb.drawbutton()
         star.drawbutton()
-        screen.blit(font.render(str(numberofteams), True, WHITE),
-                    (0, HEIGHT / 2 + 50))
-        screen.blit(font.render(str(difficulty), True, WHITE),
-                    (0, HEIGHT / 2 + 100))
+        screen.blit(font.render(str(numberofteams), True, WHITE), (0, HEIGHT / 2 + 50))
+        screen.blit(font.render(str(difficulty), True, WHITE), (0, HEIGHT / 2 + 100))
         pygame.display.flip()
         ispressed = star.ispressed()
-        if not ispressed == 0:
+        if not ispressed == 0 :
             difficulty = ispressed
         if num1b.ispressed():
             num2b.currentim = num2b.image
@@ -204,9 +190,7 @@ def rulesonscreen():
 def start_scenery():
     global running
     startb = Button(WIDTH / 2 + 70, HEIGHT / 2, screen, start)
-    rulesb = Button(WIDTH / 2 + 70,
-                    HEIGHT / 2 - start.get_height() - 20,
-                    screen, rules)
+    rulesb = Button(WIDTH / 2 + 70, HEIGHT / 2 - start.get_height() - 20, screen, rules)
     screen.blit(background, (0, 0))
     startb.drawbutton()
     rulesb.drawbutton()

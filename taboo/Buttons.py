@@ -8,6 +8,7 @@ PINK = (226, 85, 106)
 PURPLE = (74, 66, 135)
 ORANGE = (242, 159, 125)
 
+
 class Button:
     def __init__(self, x, y, surface, image, image1=False):
         self.x = x
@@ -19,6 +20,7 @@ class Button:
         self.width = image.get_width()
         self.height = image.get_height()
         self.currentim = self.image
+
     def ispressed(self):
         mouse_position = pygame.mouse.get_pos()
         mouse_x = mouse_position[0]
@@ -31,7 +33,8 @@ class Button:
                         left_click = mouse_click[0]
                         if left_click:
                             if self.image1:
-                                self.surface.blit(self.image1, (self.x, self.y))
+                                self.surface.blit(self.image1,
+                                                  (self.x, self.y))
                                 self.currentim = self.image1
                                 pygame.display.flip()
                             return True
@@ -53,6 +56,7 @@ class Slider:
         self.height = self.image.get_height()
         self.pressed = False
         self.position = image
+
     def ispressed(self):
         mouse_position = pygame.mouse.get_pos()
         mouse_x = mouse_position[0]
@@ -68,7 +72,8 @@ class Slider:
                     self.pressed = True
                     self.position = self.image1
                     return 1
-                else: return 0
+                else:
+                    return 0
             else:
                 if mouse_x < self.x + 2 * (self.width / 3):
                     mouse_click = pygame.mouse.get_pressed()
@@ -94,17 +99,17 @@ class Slider:
                         return 0
         return 0
 
-
     def drawbutton(self):
         mouse_position = pygame.mouse.get_pos()
         mouse_x = mouse_position[0]
         mouse_y = mouse_position[1]
-        if self.x + self.width > mouse_x > self.x  and self.y < mouse_y < self.y + self.height:
+        if self.x + self.width > mouse_x > self.x and
+        self.y < mouse_y < self.y + self.height:
             if mouse_x < self.x + self.width/3:
                 self.surface.blit(self.image1, (self.x, self.y))
                 pygame.display.flip()
             else:
-                if mouse_x < self.x + 2* (self.width / 3):
+                if mouse_x < self.x + 2 * (self.width / 3):
                     self.surface.blit(self.image2, (self.x, self.y))
                     pygame.display.flip()
                 else:
